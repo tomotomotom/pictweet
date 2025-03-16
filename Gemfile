@@ -74,3 +74,4 @@ end
 gem 'pry-rails'
 gem 'devise'
 gem 'faker'
+gem "aws-sdk-s3", require: false
