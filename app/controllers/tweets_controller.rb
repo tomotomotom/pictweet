@@ -11,8 +11,14 @@ class TweetsController < ApplicationController
   end
 
   def create
-    Tweet.create(tweet_params)
-    redirect_to '/'
+    @tweet = Tweet.find(params[:id])
+    #バリデーションに引っかからず更新されれば、トップページにリダイレクトする
+    if @tweet.update(tweet_params)
+      redirect_to root_path
+    else
+      #バリデーションに引っかかり保存されなければ、「編集」の画面が呼び出される
+      render 'new', status: :unprocessable_entity
+    end
   end
 
   def destroy
